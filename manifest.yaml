@@ -23,3 +23,20 @@ spec:
                 name: test-config
       restartPolicy: Never
   backoffLimit: 4
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-post-delete-hook
+  annotations:
+    argocd.argoproj.io/hook: PostDelete
+spec:
+  template:
+    spec:
+      containers:
+        - name: busybusy
+          image: busybox
+          command: ["/bin/sh", "-c", "env", "&&", "sleep", "10"]
+      restartPolicy: Never
+  backoffLimit: 4
