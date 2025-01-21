@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: busybusy
-          image: registry.k8s.io/busybox
-          command: ["/bin/sh", "-c", "env"]
+          image: busybox
+          command: ["/bin/sh", "-c", "env", "&&", "sleep", "3600"]
           envFrom:
             - configMapRef:
                 name: test-config
